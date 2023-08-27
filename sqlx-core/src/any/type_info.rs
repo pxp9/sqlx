@@ -31,6 +31,9 @@ pub enum AnyTypeInfoKind {
 
 impl TypeInfo for AnyTypeInfo {
     fn is_null(&self) -> bool {
+        if self.kind == Null {
+            return true;
+        }
         false
     }
 
