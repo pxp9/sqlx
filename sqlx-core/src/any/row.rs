@@ -62,8 +62,10 @@ impl Row for AnyRow {
         );
 
         if !value.is_null() && !ty.is_null() && !T::compatible(&ty) {
+            println!("--------------------------\n\n");
             Err(mismatched_types::<T>(&ty))
         } else {
+            println!("--------------------------\n\n");
             T::decode(value)
         }
         .map_err(|source| Error::ColumnDecode {
