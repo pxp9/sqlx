@@ -232,6 +232,6 @@ impl<T: Type<DB>, DB: Database> Type<DB> for Option<T> {
 
     fn compatible(ty: &DB::TypeInfo) -> bool {
         println!("Stupid call 2");
-        ty.is_null() && <T as Type<DB>>::compatible(ty)
+        ty.is_null() || <T as Type<DB>>::compatible(ty)
     }
 }
