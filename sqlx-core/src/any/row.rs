@@ -54,18 +54,9 @@ impl Row for AnyRow {
         let value = self.try_get_raw(&index)?;
         let ty = value.type_info();
 
-        println!(
-            "Some cond {} {} {}",
-            !value.is_null(),
-            !ty.is_null(),
-            !T::compatible(&ty)
-        );
-
         if !value.is_null() && !ty.is_null() && !T::compatible(&ty) {
-            println!("--------------------------\n\n");
             Err(mismatched_types::<T>(&ty))
         } else {
-            println!("--------------------------\n\n");
             T::decode(value)
         }
         .map_err(|source| Error::ColumnDecode {
