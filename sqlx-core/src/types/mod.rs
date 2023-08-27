@@ -232,7 +232,7 @@ impl<T: Type<DB>, DB: Database> Type<DB> for Option<T> {
 
     fn compatible(ty: &DB::TypeInfo) -> bool {
         println!("Stupid call 2");
-        println!("{}", ty.name());
+        println!("{} {} {}", ty.name(), ty.is_null(), ty.is_void());
         ty.is_null() || <T as Type<DB>>::compatible(ty)
     }
 }
