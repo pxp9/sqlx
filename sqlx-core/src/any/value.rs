@@ -92,7 +92,7 @@ impl Value for AnyValue {
     }
 
     fn is_null(&self) -> bool {
-        false
+        matches!(self.kind, AnyValueKind::Null)
     }
 }
 

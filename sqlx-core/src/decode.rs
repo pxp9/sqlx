@@ -70,6 +70,11 @@ where
     T: Decode<'r, DB>,
 {
     fn decode(value: <DB as HasValueRef<'r>>::ValueRef) -> Result<Self, BoxDynError> {
+        println!(
+            "wtf is decoding bro ? {} {}",
+            value.is_null(),
+            value.type_info()
+        );
         if value.is_null() {
             Ok(None)
         } else {
