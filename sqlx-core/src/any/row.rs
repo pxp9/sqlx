@@ -54,6 +54,13 @@ impl Row for AnyRow {
         let value = self.try_get_raw(&index)?;
         let ty = value.type_info();
 
+        log::info!(
+            "Some cond {} {} {}",
+            !value.is_null(),
+            !ty.is_null(),
+            !T::compatible(&ty)
+        );
+
         if !value.is_null() && !ty.is_null() && !T::compatible(&ty) {
             Err(mismatched_types::<T>(&ty))
         } else {
